@@ -14,7 +14,7 @@ bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
 
 task = None
 user_reactions = {}
-desired_channel_id = 1055625360546463844
+desired_channel_id = config.channel
 
 delete = open("reactions.csv",'w')
 delete.close()
