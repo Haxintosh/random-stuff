@@ -15,31 +15,35 @@ byte colPins[COLS] = {2, 14, 12, 13};
 
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
 
-String password = "#69420C0C";
+String password = "69420C0C";
 String passwordBuffer;
 
+
 void setup(){
-  Serial.begin(9600);                                                                                                                                                                                                                                                                                    
+  Serial.begin(9600);         
+  pinMode(10, OUTPUT);                                                                                                                                                                                                                                                                        
 }
 
 
 void loop(){
-
-  while (true) {
   char customKey = customKeypad.getKey();
 
 
   if (customKey == '#') {
       passwordBuffer = ("");
-      continue;
+      customKey == "";
+  }
+
+  if (customKey == 'e') {
+    if (passwordBuffer == password) {
+      digitalWrite(10, HIGH);
+    }
+    passwordBuffer = "";
   }
   
   if (customKey){
- 
-    
     Serial.println(customKey);
     passwordBuffer.concat(customKey);
     Serial.println(passwordBuffer);
-  }
   }
 }
