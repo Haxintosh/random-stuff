@@ -28,10 +28,10 @@ void setup(){
 void loop(){
   char customKey = customKeypad.getKey();
 
-
   if (customKey == '#') {
       passwordBuffer = ("");
       customKey == "";
+      digitalWrite(10, LOW);
   }
 
   if (customKey == 'e') {
