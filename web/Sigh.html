@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.75);
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container:hover .overlay {
+            opacity: 1;
+        }
+
+        .text {
+            color: black;
+            font-size: 16px;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="image" src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Image">
+        <div class="overlay">
+            <div class="text">yooo</div>
+        </div>
+    </div>
+</body>
+</html>
