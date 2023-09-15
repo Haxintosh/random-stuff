@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=-, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            color: #bd93f9;
+            overflow: hidden;
+    }
+        h5{
+            color: #6272a4;
+        }
+        h3{
+        color: #f8f8f2
+        }
+        body{
+            background-color: #282a36;
+        }
+
+        a{
+            background-color: #282a36;
+            text-decoration: none;
+            padding: 1px 2px 1px 2px;
+            border: 2px #282a36;
+            border-style: solid;
+            border-radius: 4px;
+            transition: 250ms;
+            font-size: large;
+        }
+        a:hover{
+            background-color: #44475a;
+            border-color: #44475a;
+        }
+    </style>
+</head>
+<header>
+    <nav>
+        
+    </nav>
+</header>
+<body>
+    <h1>Money converter</h1>
+    <hr color="#44475a">
+    <h5>(to scam you out of your money)</h5>
+    <input type="text" id="textinput" onkeyup="convert()">
+    <input type="button" value="convert" onclick="convert()" id="convertbutton">
+
+
+    <h3>Results:</h3>
+    <h3 id="wooooooo">0$</h3>
+    <script>
+        function convert() {
+            var thing = document.getElementById("textinput").value;
+            var us = Math.round(thing*0.78);
+            var h3res = document.getElementById("wooooooo");
+            h3res.innerHTML=us+"$";
+        }
+    </script>
+
+</body>
+</html>
