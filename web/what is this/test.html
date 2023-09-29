@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            color: tomato;
+            text-align: center;
+        }
+        h5 {
+            color: white;
+            text-align: center;
+        }
+        .invalid{  
+        }
+        .header4{
+            height:fit-content;
+            width: fit-content;
+            background-color: 	#ff5555;
+            border: 2px solid 	#ff5555;
+            border-radius: 3px;
+            color: #f8f8f2;
+        }
+        .text{
+            opacity: 1;
+            padding: 1;
+            text-align: left;
+            padding: 3px 3px 3px 3px;
+            
+    }
+
+    </style>
+</head>
+<body>
+    <h1 id="title">Gimme ur creds</h1>
+    <h5> Totally legit </h5>
+
+    <div id="username">    
+        <p1>Username</p1>
+        <br>
+        <input type="text" placeholder="Username" id="userfield">
+    </div>
+
+    <div id="password">
+        <p1>Password</p1>
+        <br>                                       
+        <input type="password" placeholder="Password" id="pswfield" >
+    </div>
+    <div>
+        <input type="button" value="Login" onclick="verify()">
+    </div>
+    <br>
+
+
+    <div id="invalid" hidden >
+        <div class="header4">
+            <div class="text">
+                 <b>Error!</b>
+                 <br>
+                Incorrect password or username.
+            </div> 
+        </div>
+
+        
+    </div>
+
+    <script>
+
+        function verify(){
+            var dict = { // worst login ever
+                "uwu" : "test",
+                "honk" : "ein",
+                "ping" : "pong"
+            };
+            var username = document.getElementById("userfield").value;
+            var psw = document.getElementById("pswfield").value;
+            if (username in dict) {
+                if (dict[username] == psw) {
+                    alert("logged in")
+                } else {
+                    invalid()
+                }
+            } else {
+                invalid()
+            }
+        }
+
+        function invalid(){
+            var element = document.getElementById("invalid");
+            element.style.display = "block";
+        }
+
+        function hide(){
+            var element = document.getElementById("invalid");
+            element.style.display = "none";
+        }
+    </script>
+</body>
+</html>
