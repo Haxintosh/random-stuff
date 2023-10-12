@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
     <style>
         h1 {
             color: tomato;
@@ -13,28 +22,82 @@
             color: white;
             text-align: center;
         }
-        .invalid{  
+        .invalid{
+            opacity: 0;
+            display: flex;
+            justify-content: flex-start;
+            position: relative;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;  
         }
-        .header4{
+        #invalidtitle{
+            opacity: inherit;
+            transition: inherit;
+            display: flex;
+            align-items: center;
             height:fit-content;
             width: fit-content;
             background-color: 	#ff5555;
             border: 2px solid 	#ff5555;
-            border-radius: 3px;
+            border-radius: 6px;
             color: #f8f8f2;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            position: absolute;
+            top: 30px;
+            right: 30px;
         }
-        .text{
+        #invalidtext{
+            opacity: inherit;
+            padding: 1;
+            text-align: left;
+            padding: 5px 8px 5px 3px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+        }
+        .icon {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        }
+        .material-symbols-outlined {
+        font-size: 40px;
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+        }
+        #valid{
+            transition: 100ms;
+            display: flex;
+            justify-content: flex-start;  
+        }
+        #validtitle{
+            display: flex;
+            align-items: center;
+            height:fit-content;
+            width: fit-content;
+            background-color: 	#44da6a;
+            border: 2px solid 	#44da6a;
+            border-radius: 5px;
+            color: #f8f8f2;
+            font-family: 'Roboto', sans-serif;
+            font: 700;
+        }
+        #validtext{
             opacity: 1;
             padding: 1;
             text-align: left;
-            padding: 3px 3px 3px 3px;
+            padding: 5px 8px 5px 3px;
+            font-family: 'Roboto', sans-serif;
+            font: 500;
             
-    }
-
+        }
     </style>
 </head>
 <body>
-    <h1 id="title">Gimme ur creds</h1>
+    <h1 id="title">Login</h1>
     <h5> Totally legit </h5>
 
     <div id="username">    
@@ -51,19 +114,34 @@
     <div>
         <input type="button" value="Login" onclick="verify()">
     </div>
+    <input type="button" value="reset" onclick="hide()">
     <br>
 
 
-    <div id="invalid" hidden >
-        <div class="header4">
-            <div class="text">
-                 <b>Error!</b>
-                 <br>
-                Incorrect password or username.
-            </div> 
-        </div>
+    <div id="invalid" style="visibility: hidden;">
+        <div id="invalidtitle" style="visibility: inherit;">
+                <div class="icon">
+                    <span class="material-symbols-outlined">error</span>
+                </div>
+                <div id="invalidtext">
+                    <b>Error!</b>
+                    <br>
+                    Incorrect password or username.
+                </div> 
+        </div>  
+    </div>
 
-        
+    <div id="valid" >
+        <div id="validtitle">
+                <div class="icon">
+                    <span class="material-symbols-outlined">done</span>
+                </div>
+                <div id="validtext">
+                    <b>Success!</b>
+                    <br>
+                    You will be redirected...
+                </div> 
+        </div>  
     </div>
 
     <script>
@@ -89,12 +167,12 @@
 
         function invalid(){
             var element = document.getElementById("invalid");
-            element.style.display = "block";
+            element.style.visibility = "visible";
         }
 
         function hide(){
             var element = document.getElementById("invalid");
-            element.style.display = "none";
+            element.style.visibility = "hidden";
         }
     </script>
 </body>
