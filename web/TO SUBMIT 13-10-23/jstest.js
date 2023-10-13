@@ -24,27 +24,32 @@ function themechange() {
     }
 }
 
-function verify(){
+function verifylogin() {
         let dict = { // worst login ever
             "uwu" : "test",
             "honk" : "ein",
             "ping" : "pong"
         };
     
-        let username = document.getElementById("userfield").value;
-        let psw = document.getElementById("pswfield").value;
+        let username = document.getElementById("username").value;
+        let psw = document.getElementById("psw").value;
+        console.log(username);
+        console.log(psw);
         if (username in dict) {
+            console.log("in dict!")
             if (dict[username] == psw) {
-                alert("logged in")
+                console.log("in!");
             } else {
-                warn()
+                console.log("out! (UWU) ");
             }
             } else {
-                invalid()
+                console.log("out!");
             }
 }
 
 function warn() {
+    const root = document.documentElement;
+
     let warnIcon = document.getElementById("warn-icon");
     let warnHeader = document.getElementById("invalid-header");
     let warnText = document.getElementById("invalid-text-span");

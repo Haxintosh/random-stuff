@@ -2,7 +2,7 @@
     --bg-color: white;
     --icon-color: #282a36;
     --input-line-color: gray;
-    --warn-type-color: TODO; 
+    --warn-type-color: #ff5555; 
 }
 
 
@@ -75,7 +75,7 @@
         display: block;
         transition: 0.2s;
         font-size: 1rem;
-        color: blueviolet;
+        color: #bd93f9;
         font-weight: 700;
     }
     width : 100%;
@@ -212,7 +212,8 @@
 .warn-icon {
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 10px 10px 10px 10px;
+    
 }
 
 #theme-button{
@@ -264,6 +265,7 @@
 /* } */
 
 .material-symbols-outlined {
+    font-size: 40px;
     font-variation-settings:
     'FILL' 0,
     'wght' 400,
