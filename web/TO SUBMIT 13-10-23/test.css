@@ -1,6 +1,7 @@
 :root{
     --bg-color: white;
     --icon-color: #282a36;
+    --input-line-color: gray;
 }
 
 
@@ -41,7 +42,7 @@
     background-color: transparent;
     border: 0;
     outline: 0;
-    border-bottom: 3px solid gray;
+    border-bottom: 3px solid var(--input-line-color);
     padding: 0px 0;
     font-size: 1.3rem;
     transition: border-color 0.2s;
@@ -63,7 +64,7 @@
     top: 22px;
     display: block;
     transition: 0.2s;
-    color: gray;
+    color: var(--input-line-color);
     font-size: 1rem;
 }
 .username-field:focus {
@@ -96,7 +97,7 @@
     background-color: transparent;
     border: 0;
     outline: 0;
-    border-bottom: 3px solid gray;
+    border-bottom: 3px solid var(--input-line-color);
     padding: 0px 0;
     padding-top: 15px;
     font-size: 1.3rem;
@@ -119,7 +120,7 @@
     top: 85px;
     display: block;
     transition: 0.2s;
-    color: gray;
+    color: var(--input-line-color);
     font-size: 1rem;
 }
 .psw-field:focus {
@@ -129,9 +130,10 @@
         display: block;
         transition: 0.2s;
         font-size: 1rem;
-        color: blueviolet;
+        color: #bd93f9;
         font-weight: 700;
     }
+
     width : 100%;
     padding-bottom: 0px;  
     font-weight: 500;
@@ -143,6 +145,33 @@
 .psw-field{
     &:required,&:invalid { box-shadow:none; }
 }
+
+.login-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+
+#login-button-id{
+    position: relative;
+    outline: none;
+    border: 5px solid var(--bg-color);
+    padding: 10px;
+    background-color: #bd93f9;
+    font-size: 20px;
+    font-family: inherit;
+    width: 250%;
+    color: var(--icon-color);
+}
+
+#login-button-id:hover{
+    background-color: #ffffff00;
+    transition: linear 200ms;
+    border: 5px solid var(--icon-color);
+}
+
 
 #theme-button{
     display: flex;
@@ -180,6 +209,7 @@
     transform: rotate(20deg);
     color: #03c0c1;
 }
+
 
 /* #theme-button-button:focus-visible #theme-icon{ accessibility */
     /* transform-origin: center; */
