@@ -1,5 +1,5 @@
 function themechange() {
-    var themeIcon = document.getElementById("theme-icon");
+    let themeIcon = document.getElementById("theme-icon");
     let themeButton = document.getElementById("theme-button-button")
     const root = document.documentElement;
 
@@ -22,4 +22,34 @@ function themechange() {
         root.style.setProperty('--icon-color', dark);
         root.style.setProperty('--input-line-color', text_line_white);
     }
+}
+
+function verify(){
+        let dict = { // worst login ever
+            "uwu" : "test",
+            "honk" : "ein",
+            "ping" : "pong"
+        };
+    
+        let username = document.getElementById("userfield").value;
+        let psw = document.getElementById("pswfield").value;
+        if (username in dict) {
+            if (dict[username] == psw) {
+                alert("logged in")
+            } else {
+                warn()
+            }
+            } else {
+                invalid()
+            }
+}
+
+function warn() {
+    let warnIcon = document.getElementById("warn-icon");
+    let warnHeader = document.getElementById("invalid-header");
+    let warnText = document.getElementById("invalid-text-span");
+
+    let red = "#ff5555";
+    let green = "#44da6a";
+
 }
