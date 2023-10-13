@@ -173,12 +173,13 @@
     border: 5px solid var(--icon-color);
 }
 
-.invalid{
-        opacity: 0;
+#invalid{
+        opacity: 1;
         display: flex;
         justify-content: flex-start;
         position: relative;
         transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;  
+        visibility: hidden;
 }
 
 #invalidtitle{
