@@ -6,17 +6,13 @@ function themechange() {
     let dark = "#282A36";
     let white = "#F8F8F2";
     let text_line_white = "gray";
-    let text_line_dark = "#cbcbcb"
-
-;    // Check the current text content of the theme-icon
+    let text_line_dark = "#cbcbcb"; 
     if (themeIcon.textContent === "dark_mode") {
-        // Change to "light_mode" when it's "dark_mode"
         themeIcon.textContent = "light_mode";
         root.style.setProperty('--bg-color', dark);
         root.style.setProperty('--icon-color', white);
         root.style.setProperty('--input-line-color', text_line_dark);
     } else {
-        // Change back to "dark_mode" when it's "light_mode"
         themeIcon.textContent = "dark_mode";
         root.style.setProperty('--bg-color', white);
         root.style.setProperty('--icon-color', dark);
@@ -26,30 +22,37 @@ function themechange() {
 
 function verifylogin() {
     let home_url = "https://google.com";
-        let dict = { // worst login ever
-            "uwu" : "test",
-            "honk" : "ein",
-            "ping" : "pong"
-        };
-    
         let username = document.getElementById("username").value;
         let psw = document.getElementById("psw").value;
-        console.log(username);
-        console.log(psw);
-        if (username in dict) {
-            console.log("in dict!")
+        let uuid = generateUUID();
+
+        if (localStorage.getItem('UUIDs') === null) {
+            localStorage.setItem('UUIDs', JSON.stringify(["uwu"]));
+        }
+
+        let uuidList = JSON.parse(localStorage.getItem('UUIDs'));
+
+        for (var i = 0; i < localStorage.length; i++) {
+            usernames.push(localStorage.key(i));
+        }
+        
+        if (usernames.includes(username)) {
+            console.log("in storage!")
             if (dict[username] == psw) {
                 console.log("in!");
-                warn("Success!", "You will be redirected...", "INF");
                 window.location.replace(home_url);
-                
+                let cookie = "sessionUUIDOHNO="+uuid; 
+                document.cookie = cookie + ";SameSite=Strict";
+                uuidList.push(uuid);
+                localStorage.setItem('UUIDs', JSON.stringify(uuidList));
+                warn("Success!", "You will be redirected...", "INF");
             } else {
                 console.log("out! (UWU) ");
                 warn("Error!", "Invalid Password!", "ERR");
             }
             } else {
                 console.log("out!");
-                warn("Error!", "Invalid Username (Sign up?)", "ERR");
+                warn("Error!", "Username Not Found! (Sign up?)", "ERR");
             }
 }
 
@@ -85,6 +88,12 @@ function warn(header, message, type) {
             warnCont.style.visibility = "hidden";
         }, 2000);
     }
-
-
 }
+
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (Math.random() * 16) | 0;
+        var v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+    }

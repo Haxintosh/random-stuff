@@ -6,51 +6,19 @@ function themechange() {
     let dark = "#282A36";
     let white = "#F8F8F2";
     let text_line_white = "gray";
-    let text_line_dark = "#cbcbcb"
-
-;    // Check the current text content of the theme-icon
+    let text_line_dark = "#cbcbcb";   
+    
     if (themeIcon.textContent === "dark_mode") {
-        // Change to "light_mode" when it's "dark_mode"
         themeIcon.textContent = "light_mode";
         root.style.setProperty('--bg-color', dark);
         root.style.setProperty('--icon-color', white);
         root.style.setProperty('--input-line-color', text_line_dark);
     } else {
-        // Change back to "dark_mode" when it's "light_mode"
         themeIcon.textContent = "dark_mode";
         root.style.setProperty('--bg-color', white);
         root.style.setProperty('--icon-color', dark);
         root.style.setProperty('--input-line-color', text_line_white);
     }
-}
-
-function verifylogin() {
-    let home_url = "https://google.com";
-        let dict = { // worst login ever
-            "uwu" : "test",
-            "honk" : "ein",
-            "ping" : "pong"
-        };
-    
-        let username = document.getElementById("username").value;
-        let psw = document.getElementById("psw").value;
-        console.log(username);
-        console.log(psw);
-        if (username in dict) {
-            console.log("in dict!")
-            if (dict[username] == psw) {
-                console.log("in!");
-                warn("Success!", "You will be redirected...", "INF");
-                window.location.replace(home_url);
-                
-            } else {
-                console.log("out! (UWU) ");
-                warn("Error!", "Invalid Password!", "ERR");
-            }
-            } else {
-                console.log("out!");
-                warn("Error!", "Invalid Username (Sign up?)", "ERR");
-            }
 }
 
 function verifysignup() {
@@ -121,11 +89,11 @@ function verifysignup() {
         
         if (psw===pswConfirm) {
                 localStorage.setItem(username, psw);
-                warn("Success!", "You will be redirected...", "INF");
-                cookie = "sessionUUIDOHNO="+uuid; 
+                let cookie = "sessionUUIDOHNO="+uuid; 
                 document.cookie = cookie + ";SameSite=Strict";
                 uuidList.push(uuid);
                 localStorage.setItem('UUIDs', JSON.stringify(uuidList));
+                warn("Success!", "You will be redirected...", "INF");
                 // window.location.replace("https://sillygoosy.ca");         
             } else {
                 warn("Error!", "Confirm password does not equal to password!", "ERR");
