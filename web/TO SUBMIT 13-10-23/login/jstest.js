@@ -25,6 +25,7 @@ function themechange() {
 }
 
 function verifylogin() {
+    let home_url = "https://google.com";
         let dict = { // worst login ever
             "uwu" : "test",
             "honk" : "ein",
@@ -40,6 +41,7 @@ function verifylogin() {
             if (dict[username] == psw) {
                 console.log("in!");
                 warn("Success!", "You will be redirected...", "INF");
+                window.location.replace(home_url);
                 
             } else {
                 console.log("out! (UWU) ");
@@ -81,7 +83,7 @@ function warn(header, message, type) {
         warnCont.style.visibility = "visible";
         setTimeout(() => {
             warnCont.style.visibility = "hidden";
-        }, 2000)
+        }, 2000);
     }
 
 

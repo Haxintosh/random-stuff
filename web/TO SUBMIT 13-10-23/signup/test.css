@@ -55,7 +55,7 @@
     &:placeholder-shown ~ .user-label{
         font-size: 1.3rem;
         cursor: text;
-        top: 52px;
+        top: 51px;
     }
 }
 
@@ -111,14 +111,14 @@
     &:placeholder-shown ~ .psw-label{
         font-size: 1.3rem;
         cursor: text;
-        top: 115px;
+        top: 115.5px;
     }
 }
 
 .psw-label {
     font-family: inherit;
     position: absolute;
-    top: 85px;
+    top: 95px;
     display: block;
     transition: 0.2s;
     color: var(--input-line-color);
@@ -127,7 +127,7 @@
 .psw-field:focus {
     ~ .psw-label {
         position :absolute;
-        top: 85px;
+        top: 95px;
         display: block;
         transition: 0.2s;
         font-size: 1rem;
@@ -144,6 +144,64 @@
 }
 
 .psw-field{
+    &:required,&:invalid { box-shadow:none; }
+}
+
+ 
+/*  */
+.psw-field-conf{
+    position: relative;
+    font-family: inherit;
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    border-bottom: 3px solid var(--input-line-color);
+    padding: 0px 0;
+    padding-top: 33px;
+    font-size: 1.3rem;
+    transition: border-color 0.2s;
+    transition: color linear;
+    color: var(--icon-color);
+    &::placeholder{
+        color: transparent;
+    }
+    &:placeholder-shown ~ .psw-label-conf{
+        font-size: 1.3rem;
+        cursor: text;
+        top: 175px;
+    }
+}
+
+.psw-label-conf {
+    font-family: inherit;
+    position: absolute;
+    top: 155px;
+    display: block;
+    transition: 0.2s;
+    color: var(--input-line-color);
+    font-size: 1rem;
+}
+.psw-field-conf:focus {
+    ~ .psw-label-conf {
+        position :absolute;
+        top: 155px;
+        display: block;
+        transition: 0.2s;
+        font-size: 1rem;
+        color: #bd93f9;
+        font-weight: 700;
+    }
+
+    width : 100%;
+    padding-bottom: 0px;  
+    font-weight: 500;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #bd93f9, #8be9fd);
+    border-image-slice: 1;
+}
+
+.psw-field-conf{
     &:required,&:invalid { box-shadow:none; }
 }
 
@@ -178,7 +236,7 @@
         display: flex;
         justify-content: flex-start;
         position: relative;
-        transition: visibility 0.5s linear;  
+        transition: visibility 100ms linear;  
         visibility: hidden;
 }
 
@@ -203,7 +261,6 @@
     
 #invalidtext{
         opacity: inherit;
-        padding: 1;
         text-align: left;
         padding: 5px 8px 5px 3px;
         font-family: 'Roboto', sans-serif;
@@ -214,7 +271,6 @@
     display: flex;
     align-items: center;
     padding: 0 10px 10px 10px 10px;
-    
 }
 
 #theme-button{
