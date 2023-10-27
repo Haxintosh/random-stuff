@@ -35,6 +35,7 @@
         </div>
         
         <div class="login-container">
+            <form onsubmit="verifylogin()" action="#">
             <div class="user-container">
                 <input class="username-field" id="username" type="text" name="username" placeholder="Username">
                 <label for="username" class="user-label">Username</label>
@@ -47,8 +48,10 @@
                 <!-- <input id="psw-show-bt" type="button"> -->
             </div>
             <div class="login-button">
-                <button id="login-button-id" onclick="verifylogin()">Login</button>
+                <input type="submit" value="Login" id="login-button-id" />
+                <!-- <button id="login-button-id" onclick="verifylogin()">Login</button> -->
             </div>
+            </form>
         </div>
 
         <div id="invalid">

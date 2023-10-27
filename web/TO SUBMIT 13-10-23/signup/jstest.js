@@ -1,3 +1,18 @@
+// document.addEventListener("DOMContentLoaded", (event) => {
+//     console.log("DOM fully loaded and parsed");
+//   });
+
+window.addEventListener('load', (event) => {
+    console.log("DOM fully loaded and parsed");
+    var divToRemove = document.querySelector(".load-blocker");
+  if (divToRemove) {
+    divToRemove.remove();
+    }
+});
+
+  
+
+
 function themechange() {
     let themeIcon = document.getElementById("theme-icon");
     let themeButton = document.getElementById("theme-button-button")
@@ -89,7 +104,7 @@ function verifysignup() {
         
         if (psw===pswConfirm) {
                 localStorage.setItem(username, psw);
-                let cookie = "sessionUUIDOHNO="+uuid; 
+                let cookie = "sessionUUIDOHNO="+ uuid + ":" + username; 
                 document.cookie = cookie + ";SameSite=Strict";
                 uuidList.push(uuid);
                 localStorage.setItem('UUIDs', JSON.stringify(uuidList));

@@ -1,3 +1,4 @@
+
 function themechange() {
     let themeIcon = document.getElementById("theme-icon");
     let themeButton = document.getElementById("theme-button-button")
@@ -19,12 +20,15 @@ function themechange() {
         root.style.setProperty('--input-line-color', text_line_white);
     }
 }
-
 function verifylogin() {
+    event.preventDefault();
     let home_url = "https://google.com";
         let username = document.getElementById("username").value;
         let psw = document.getElementById("psw").value;
         let uuid = generateUUID();
+        let usernames = [];
+
+        localStorage.setItem("uwu", "test");
 
         if (localStorage.getItem('UUIDs') === null) {
             localStorage.setItem('UUIDs', JSON.stringify(["uwu"]));
@@ -37,12 +41,11 @@ function verifylogin() {
         }
         
         if (usernames.includes(username)) {
-            console.log("in storage!")
-            if (dict[username] == psw) {
+            console.log("in storage!");
+            if (psw == localStorage.getItem(username)) {
                 console.log("in!");
-                window.location.replace(home_url);
-                let cookie = "sessionUUIDOHNO="+uuid; 
-                document.cookie = cookie + ";SameSite=Strict";
+                let cookie = "sessionUUIDOHNO="+ uuid + ":" + username; 
+                document.cookie = cookie + ";SameSite=Lax;path=/";
                 uuidList.push(uuid);
                 localStorage.setItem('UUIDs', JSON.stringify(uuidList));
                 warn("Success!", "You will be redirected...", "INF");
@@ -94,6 +97,6 @@ function generateUUID() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         var r = (Math.random() * 16) | 0;
         var v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
+        return v.toString(16);    
     });
     }
