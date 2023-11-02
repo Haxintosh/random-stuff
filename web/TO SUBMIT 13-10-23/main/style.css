@@ -1,6 +1,7 @@
 :root {
     --bg-color: #F8F8F2;
     --bar-color: #282A36;
+    --notif-color: #FF5555;
 }
 
 body {
@@ -16,3 +17,28 @@ body {
     width: 100%;
     height: 9%;
 }
+
+#notif-container {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: var(--notif-color);
+    color: white;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    border: 10px solid var(--notif-color);
+    border-radius: 4px;
+    flex-direction: column;
+}
+
+#notif-title {
+    color: #F8F8F2;
+}
+
+#notif-text {
+    color: #F8F8F2;
+    font-size: x-large;
+}
+

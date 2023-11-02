@@ -1,17 +1,11 @@
-// document.addEventListener("DOMContentLoaded", (event) => {
+// window.addEventListener('load', (event) => {
 //     console.log("DOM fully loaded and parsed");
-//   });
-
-window.addEventListener('load', (event) => {
-    console.log("DOM fully loaded and parsed");
-    var divToRemove = document.querySelector(".load-blocker");
-  if (divToRemove) {
-    divToRemove.remove();
-    }
-});
-
+//     var divToRemove = document.querySelector(".load-blocker");
+//   if (divToRemove) {
+//     divToRemove.remove();
+//     }
+// });
   
-
 
 function themechange() {
     let themeIcon = document.getElementById("theme-icon");
@@ -37,8 +31,6 @@ function themechange() {
 }
 
 function verifysignup() {
-    let home_url = "https://google.com";
-    
         let username = document.getElementById("username").value;
         let psw = document.getElementById("psw").value;
         let pswConfirm = document.getElementById("psw-conf").value;
@@ -94,10 +86,6 @@ function verifysignup() {
 
         if (usernames.includes(username)) {
             console.log("in storage!");
-            // if (dict[username] == psw) {
-            //     console.log("in!");
-            //     warn("Success!", "You will be redirected...", "INF");
-            //     window.location.replace(home_url);
             warn("Error!", "Username taken!", "ERR");
             return;
             } 
@@ -105,11 +93,11 @@ function verifysignup() {
         if (psw===pswConfirm) {
                 localStorage.setItem(username, psw);
                 let cookie = "sessionUUIDOHNO="+ uuid + ":" + username; 
-                document.cookie = cookie + ";SameSite=Strict";
+                document.cookie = cookie + ";SameSite=Lax;path=/";
                 uuidList.push(uuid);
                 localStorage.setItem('UUIDs', JSON.stringify(uuidList));
                 warn("Success!", "You will be redirected...", "INF");
-                // window.location.replace("https://sillygoosy.ca");         
+                window.location.replace("../main/main.html");         
             } else {
                 warn("Error!", "Confirm password does not equal to password!", "ERR");
                 return;
@@ -157,4 +145,4 @@ function generateUUID() {
         var v = c === 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
-    }
+}

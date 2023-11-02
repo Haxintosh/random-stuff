@@ -49,6 +49,7 @@ function verifylogin() {
                 uuidList.push(uuid);
                 localStorage.setItem('UUIDs', JSON.stringify(uuidList));
                 warn("Success!", "You will be redirected...", "INF");
+                window.location.replace("../main/main.html"); 
             } else {
                 console.log("out! (UWU) ");
                 warn("Error!", "Invalid Password!", "ERR");
