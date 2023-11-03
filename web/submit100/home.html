@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]> <html class="no-js"> <![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Home</title>
+        <meta name="Home" content="Home">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            :root {
+                --bg-color: #F8F8F2;
+                --bar-color: #282A36;
+                --notif-color: #FF5555;
+            }
+
+            body {
+                background-color: var(--bg-color);
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .top-bar {
+                background-color: var(--bar-color);
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 9%;
+            }
+
+            #notif-container {
+                position: absolute;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                background-color: var(--notif-color);
+                color: white;
+                display: flex;
+                width: fit-content;
+                height: fit-content;
+                border: 10px solid var(--notif-color);
+                border-radius: 4px;
+                flex-direction: column;
+            }
+
+            #notif-title {
+                color: #F8F8F2;
+            }
+
+            #notif-text {
+                color: #F8F8F2;
+                font-size: x-large;
+            }
+        </style>
+    </head>
+                           ------>
+    <body>
+        <div class="top-bar">
+            <div id="top-bar-logo">
+            </div>
+            <div id="top-bar-buttons">
+            </div>
+            <div id="top-bar-more"></div>
+        </div>
+
+        <div id="notif-container">
+            <h2 id="notif-title">
+                Unauthorized!
+            </h2>
+            <br>
+            <span id="notif-text">
+                User not authenticated!
+            </span>
+        </div>
+
+        <script>
+            const root = document.documentElement;
+            const red = "#ff5555";
+            const green = "#44da6a";
+    
+            if (localStorage.getItem('UUIDs') === null) {
+                localStorage.setItem('UUIDs', JSON.stringify(["uwu"]));
+            }
+    
+            let uuidList = JSON.parse(localStorage.getItem('UUIDs'));
+    
+            let sessionCookie = getCookie("sessionUUIDOHNO").split(":");
+            let sessionID;
+            let sessionUsername;
+            console.log(sessionUUID = sessionCookie[0]);
+    
+            if (sessionCookie) {
+                sessionUUID = sessionCookie[0];
+                sessionUsername = sessionCookie[1];
+                console.log(sessionUUID);
+                console.log(sessionUsername);
+            } else {
+                invalidSession();
+            }
+    
+            if (uuidList.includes(sessionUUID)) {
+                validSession();
+            } else {
+                invalidSession();
+            }
+    
+            function validSession() {
+                let notifTitle = document.getElementById("notif-title");
+                let notifText = document.getElementById("notif-text");
+                root.style.setProperty('--notif-color', green);
+                notifTitle.innerHTML = "Welcome!";
+                notifText.innerHTML = "Hi " + sessionUsername + "!"
+            }
+    
+            function invalidSession() {
+                let notifTitle = document.getElementById("notif-title");
+                let notifText = document.getElementById("notif-text");
+                root.style.setProperty('--notif-color', red);
+                notifTitle.innerHTML = "Unauthorized!";
+                notifText.innerHTML = "User not authenticated!"
+            }
+    
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+        </script>
+    </body>
+</html>
