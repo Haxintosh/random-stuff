@@ -277,6 +277,45 @@
                 color: #03c0c1;
             }
 
+            #signup-button{
+                display: flex;
+                align-items: center;
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            #signup-button-button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                height: 90px;
+                width: 90px;
+                background-color: var(--bg-color);
+                border: none;
+                outline: none;
+                z-index: 1;
+                transition: linear 100ms;
+            }
+
+            #signup-icon{
+                position: relative;
+                align-items: center;
+                z-index: 2;
+                color: var(--icon-color);
+                padding: 0px 0px 0px 0px;
+                margin: 0px 0px 0px 0px;
+                font-size: 45px;
+                transition: inherit;
+            }
+
+            #signup-button-button:hover #signup-icon{
+                transform-origin: center;
+                transform: rotate(20deg);
+                color: #03c0c1;
+            }
 
             /* #theme-button-button:focus-visible #theme-icon{ accessibility */
                 /* transform-origin: center; */
@@ -296,6 +335,25 @@
                 'GRAD' 0,
                 'opsz' 24
             }
+
+            .tooltiptext {
+                visibility: hidden;
+                width: 120px;
+                background-color: var(--bg-color);
+                color: var(--icon-color);
+                text-align: center;
+                padding: 5px 0;
+                border-radius: 6px;
+                position: absolute;
+                z-index: 1;
+                top: 110%;
+                font-weight: 600;
+            }
+
+            #signup-button:hover .tooltiptext {
+                visibility: visible;
+            }
+
         </style>
     </head>
     <body>
@@ -345,7 +403,20 @@
             </div>
         </div>
 
+        <div class="signup">
+            <div id="signup-button">
+                <button id = "signup-button-button" onclick="transite()"> 
+                    <span class="material-symbols-outlined" id="signup-icon">person_add</span> 
+                    <span class="tooltiptext">Sign Up</span>
+                </button>
+            </div>
+        </div>
+
         <script>
+            function transite() {
+                window.location.replace("signup.html"); 
+            }
+
             function themechange() {
                 let themeIcon = document.getElementById("theme-icon");
                 let themeButton = document.getElementById("theme-button-button")
