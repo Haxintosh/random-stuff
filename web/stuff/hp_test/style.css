@@ -1,0 +1,49 @@
+:root{
+    --bar: 10%;
+}
+
+body{
+    background-color: #181926;
+    overflow: hidden   ;
+}
+
+#hp-div{
+    position: absolute;
+    flex-direction: column;
+    top: 50%;
+    right: 50%;
+    transform: translateX(50%) translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 500px;
+    width: 200px;
+    background-color: #24273a;
+    border: 10px #24273a solid ;
+}
+
+#div-hp-bg{
+    position: relative;
+    height: var(--bar);
+    width: 100%;
+    background-color: #f38ba8;
+    transition: height 100ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#form-id{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Noto Sans', sans-serif;
+    color: #cba6f7;
+}
+
+#pct{
+    background-color: #6c7086;
+    caret-color: #cdd6f4;
+    color: #cdd6f4;
+    border: 0;
+
+}
+
