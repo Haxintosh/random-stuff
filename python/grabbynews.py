@@ -54,7 +54,7 @@ def recursiveGet(new, url):
             document = requests.get(link).text
             souph1 = BeautifulSoup(document, "html.parser", parse_only=SoupStrainer("h1", attrs={"class":"detailHeadline"})) # Intended, add/remove as you need
             souph2 = BeautifulSoup(document, "html.parser", parse_only=SoupStrainer("h2", attrs={"class": "deck"}))
-            time = BeautifulSoup(document, "html.parser", parse_only=SoupStrainer("h2", attrs={"class": "deck"}))
+            time = BeautifulSoup(document, "html.parser", parse_only=SoupStrainer("time", attrs={"class": "timeStamp"}))
 
             title = souph1.find("h1", class_="detailHeadline")
             deck = souph2.find("h2", class_="deck")
