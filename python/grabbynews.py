@@ -1,12 +1,15 @@
 # GIMME BACK MY STRONGLY TYPED JAVA MOM GIVE IT BACKKKKKKKKKKK
 import datetime
-
+import csv
 import bs4
 import requests
 from bs4 import BeautifulSoup, SoupStrainer
 
+db = open(datetime.datetime.now().strftime("%Y:%m:%d-%H:%M")+ ".csv", 'w')
+fieldnames = ["url", "time", "title", "deck"]
 
-file = open(datetime.datetime.now().strftime("%H:%M")+ ".md", 'a')
+
+file = open(datetime.datetime.now().strftime("%Y:%m:%d-%H:%M")+ ".md", 'a')
 newsBase=["https://www.cbc.ca/news", "https://ground.news/"]
 
 def getNews(link):
@@ -54,22 +57,30 @@ def recursiveGet(new, url):
             document = requests.get(link).text
             souph1 = BeautifulSoup(document, "html.parser", parse_only=SoupStrainer("h1", attrs={"class":"detailHeadline"})) # Intended, add/remove as you need
             souph2 = BeautifulSoup(document, "html.parser", parse_only=SoupStrainer("h2", attrs={"class": "deck"}))
-            time = BeautifulSoup(document, "html.parser", parse_only=SoupStrainer("time", attrs={"class": "timeStamp"}))
+            souptime = BeautifulSoup(document, "html.parser", parse_only=SoupStrainer("time", attrs={"class": "timeStamp"}))
 
             title = souph1.find("h1", class_="detailHeadline")
             deck = souph2.find("h2", class_="deck")
-            time = time.find("time", class_="timeStamp")
+            time = souptime.find("time", class_="timeStamp")
             if title:
                 ans[link] = [title.text.strip(),deck.text.strip(), time.text.strip()]
     return ans
-news = getNews("https://www.cbc.ca/news")
 
 def generateMD(dict):
     for i in dict:
         file.write("# " + dict[i][0] + "\n")
-        file.write(dict[i][2]+"\n"+i+"\n"+dict[i][1]+"\n")
+        file.write(f"{dict[i][2]}\n"
+                   f"{i}\n"
+                   f"{dict[i][1]}\n")
     file.close()
 
-generateMD(recursiveGet(getNews("https://www.cbc.ca/news"),"https://www.cbc.ca/news"))
+def saveToCsv(dict):
+    csvwriter = csv.writer(db, delimiter=",", quotechar='"')
+    for i in dict:
+        csvwriter.writerow([i, dict[i][2], dict[i][0], dict[i][1]])
 
+dict = recursiveGet(getNews("https://www.cbc.ca/news"),"https://www.cbc.ca/news")
+
+saveToCsv(dict)
+generateMD(dict)
 
