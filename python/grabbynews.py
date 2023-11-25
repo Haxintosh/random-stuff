@@ -49,6 +49,29 @@ def getNews(link):
                 pass
     return ans
 
+def getNewsCAQ(link):
+    year1 = 2023
+    month1 = 10
+
+    year2 = 2023
+    month2 = 11
+    
+    filterURL1 = f"https://coalitionavenirquebec.org/fr/blog/{year1}/{month1}/"
+    filterURL2 = f"https://coalitionavenirquebec.org/fr/blog/{year2}/{month2}/"
+    
+    news = []
+    ans = []
+    document = requests.get(link).text
+    soup = bs4.BeautifulSoup(document, "html.parser", parse_only=SoupStrainer("a"))
+
+    for url in soup :
+        if url.has_attr("href"):
+            if url["href"].startswith(filterURL1) | url["href"].startswith(filterURL2):
+                news.append(url["href"])
+            else:
+                pass
+    return news
+
 def recursiveGet(new, url):
     ans ={}
     for i in new:
