@@ -3,13 +3,12 @@ hp = 100;
 function pctChange(){
     event.preventDefault();
     let pct = document.getElementById("pct").value;
-    root.style.setProperty("--bar", pct + "%");
+    dmgChange(pct)
 }
 
 function damage(){
     dmgToDeal = 20*Math.random();
     if (dmgToDeal >= 10){
-        alert("critical");
     }
     hp = hp - dmgToDeal;
     dmgChange(hp);
