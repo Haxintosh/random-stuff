@@ -3,6 +3,22 @@ import utils
 import requests
 import time
 import random
+import fpdf
+import ocrmypdf
+from alive_progress import alive_it
+
+# DISCLAIMERS
+# This script should only be run if you own the book
+# This script is for educational purposes only
+# This script is not intended to be used for piracy
+# This script is not intended to be used for any illegal activities
+# This script is not intended to be used for any commercial activities
+# Only for students who don't want to deal with the always online nature of the books and a searchable (OCR) version
+# I am not responsible for any misuse of this script or any legal actions taken against you for using this script
+
+# There's 3 sizes for the pages, small, medium or large
+# You can change the size by changing the URL of the page to the desired size in utils.py
+# For medium it's avg 8MB per 100 pages (non OCR)
 
 # CONFIG
 outputFolder = 'res/'
@@ -56,3 +72,40 @@ def downloadPage(pageID, folder, headers):
         f.write(req.content)
         f.close()
     time.sleep(0.5*random.random()+1) # we wait for a bit to avoid getting rate limited
+
+def downloadAllPages():
+    begin = 0
+    end = len(pageIDs)
+    listArray=list(range(begin, end))
+    random.shuffle(listArray)
+    bar = alive_it(listArray)
+    for i in bar:
+        downloadPage(pageIDs[i], outputFolder, headers)
+
+
+def makePDF(pageIDs, folder):
+    pdfIterateCount = 0
+    pdf = fpdf.FPDF(format=(648, 783))
+    bar = alive_it(pageIDs)
+    for pageID in bar:
+        pdfIterateCount += 1
+        # print(f"Adding page {pageID} to PDF, {len(pageIDs)-pdfIterateCount} pages left to add.")
+        pdf.add_page()
+        pdf.image(folder + pageID, 0, 0, 648, 783)
+    pdf.output(folder + "book.pdf", "F")
+
+def OCRPDF():
+    ocrmypdf.ocr(outputFolder + "book.pdf", outputFolder + "book.pdf", language='fra')
+
+def main():
+    # cleanOutput(outputFolder)
+    print("Downloading pages...")
+    downloadAllPages()
+    print("Making PDF...")
+    makePDF(pageIDs, outputFolder)
+    print("OCR PDF...")
+    OCRPDF()
+    print(f"Done! PDF saved to {outputFolder}book.pdf.")
+
+if __name__ == "__main__":
+    main()
