@@ -68,6 +68,9 @@ def downloadPage(pageID, folder, headers):
     headers_utf8 = {k: v.encode('utf-8') for k, v in headers.items()}
     req = requests.get(f'https://{baseURL}{pageID}', headers=headers_utf8)
     print(f"Downloading {pageID}")
+    if requests.status_codes.codes.ok != req.status_code:
+        print(f"Error downloading {pageID}, status code: {req.status_code}, exiting...")
+        return
     with open (folder + pageID, 'wb') as f:
         f.write(req.content)
         f.close()
@@ -92,13 +95,23 @@ def makePDF(pageIDs, folder):
         # print(f"Adding page {pageID} to PDF, {len(pageIDs)-pdfIterateCount} pages left to add.")
         pdf.add_page()
         pdf.image(folder + pageID, 0, 0, 648, 783)
-    pdf.output(folder + "book.pdf", "F")
+    try:
+         pdf.output(folder + "book.pdf", "F")
+    except Exception as e:
+        print("Error making PDF, exiting...")
+        print(e)
+        exit()
 
 def OCRPDF():
     ocrmypdf.ocr(outputFolder + "book.pdf", outputFolder + "book.pdf", language='fra')
 
 def main():
     # cleanOutput(outputFolder)
+    if not os.path.exists(outputFolder):
+        os.makedirs(outputFolder)
+    if os.path.exists(outputFolder + "book.pdf"):
+        print("PDF already exists, exiting...")
+        exit()
     print("Downloading pages...")
     downloadAllPages()
     print("Making PDF...")
